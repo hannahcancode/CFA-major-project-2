@@ -5,6 +5,6 @@ cache: bundler
 services:
   - postgresql
 before_script:
-- psql -c 'create database Sprouted_test;' -U postgres
+- bundle exec rake db:create
 - bundle exec rake db:migrate
 script: bundle exec rspec
