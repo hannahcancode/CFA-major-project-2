@@ -5,6 +5,7 @@ cache: bundler
 services:
   - postgresql
 before_script:
-- "psql -c 'create database travis;' -U postgres"
-- "bundle exec rake db:migrate"
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database Sprouted_test;' -U postgres
+- bundle exec rake db:migrate
 script: bundle exec rspec
