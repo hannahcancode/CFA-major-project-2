@@ -43,6 +43,7 @@ group :development, :test do
   gem 'pry'
   gem 'faker'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec-pride', '~> 3.1', '>= 3.1.1'
 end
 
 group :development do
