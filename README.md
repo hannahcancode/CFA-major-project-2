@@ -1,6 +1,21 @@
 # Sprouted [![Build Status](https://travis-ci.org/hannahcancode/CFA-major-project-2.svg?branch=master)](https://travis-ci.org/hannahcancode/CFA-major-project-2)
 
-#### A Coder Factory Academy major project
+## About
+
+'Sprouted' is a major project for the Coder Factory Academy Diploma of Software Development Course.
+
+### What is Sprouted?
+- Sprouted is a Ruby on Rails web app that aims to make a small step in increasing the food security of communities. It:
+
+  - connects would be farmers and gardeners to land/leaseholders who have unused space
+
+  - provides a marketplace for the sale or swap of garden produce
+
+  - allows for the donation of excess produce to those in need.
+
+
+### Project requirements
+TBA
 
 ## Setup
 ### Installation
@@ -12,7 +27,7 @@
 - run `$ bundle` to install gem dependencies
 
 
-- create and migrate the postgresql database
+- create and migrate the postgresql database:
 
   ```bash
   $ rails db:create
