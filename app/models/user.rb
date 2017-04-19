@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   after_create :create_profile
 
-  has_one :profile, :dependent => :delete
+  has_one :profile, :dependent => :destroy
+  has_many :spaces, :dependent => :destroy
 
   def create_profile
     Profile.create(user_id: id)
