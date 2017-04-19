@@ -1,5 +1,5 @@
 function init() {
-  var input = document.getElementById('location');
+  var input = document.getElementById('profile_location');
   var options = {
     componentRestrictions: {country: 'au'},
     types: ['(cities)']
