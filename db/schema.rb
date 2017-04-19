@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417014740) do
+ActiveRecord::Schema.define(version: 20170419010438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 20170417014740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
+
+  create_table "spaces", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "street_number"
+    t.string   "street_name"
+    t.string   "suburb"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postal_code"
+    t.string   "images"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_spaces_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +60,5 @@ ActiveRecord::Schema.define(version: 20170417014740) do
   end
 
   add_foreign_key "profiles", "users"
+  add_foreign_key "spaces", "users"
 end
