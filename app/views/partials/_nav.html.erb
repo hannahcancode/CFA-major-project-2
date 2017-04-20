@@ -29,15 +29,14 @@
   <!-- This "nav-menu" is hidden on mobile -->
   <!-- Add the modifier "is-active" to display it on mobile -->
   <div class="nav-right nav-menu">
-    <a class="nav-item">
-      Home
-    </a>
-    <a class="nav-item">
-      Documentation
-    </a>
-    <a class="nav-item">
-      Blog
-    </a>
+    <%= link_to "Profiles", profiles_path, class: 'nav-item'%>
+    <% if user_signed_in? %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: 'nav-item'%>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path, class: 'nav-item'%>
+    <% end %>
+    <%= link_to "Spaces", spaces_path, class: 'nav-item'%>
+
 
     <div class="nav-item">
       <div class="field is-grouped">

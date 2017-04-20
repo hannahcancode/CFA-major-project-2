@@ -2,7 +2,7 @@
 
 <h1>Spaces</h1>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -17,28 +17,22 @@
       <th>User</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+  </thead> -->
 
-  <tbody>
+
     <% @spaces.each do |space| %>
-      <tr>
-        <td><%= space.name %></td>
-        <td><%= space.description %></td>
-        <td><%= space.street_number %></td>
-        <td><%= space.street_name %></td>
-        <td><%= space.suburb %></td>
-        <td><%= space.state %></td>
-        <td><%= space.country %></td>
-        <td><%= space.postal_code %></td>
-        <td><%= space.images %></td>
-        <td><%= space.user %></td>
-        <td><%= link_to 'Show', space %></td>
-        <td><%= link_to 'Edit', edit_space_path(space) %></td>
-        <td><%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="box">
+        <p><%= space.name %></p>
+        <p><%= space.description %></p>
+        <p><%= space.street_number %> <%= space.street_name %></p>
+        <p><%= space.suburb %> <%= space.postal_code %></p>
+        <p><%= space.state %> <%= space.country %></p>
+        <p><%= space.user.email %></p>
+        <p><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
     <% end %>
-  </tbody>
-</table>
+
+
 
 <br>
 
