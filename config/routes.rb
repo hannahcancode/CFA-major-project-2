@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :bookings
   resources :spaces
+  resources :bookings do
+    member do
+        end
+  end
   resources :profiles
   devise_for :users
   root 'pages#index'
