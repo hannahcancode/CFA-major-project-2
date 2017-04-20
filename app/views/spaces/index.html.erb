@@ -18,20 +18,41 @@
       <th colspan="3"></th>
     </tr>
   </thead> -->
-
-
+<div class="columns is-multiline">
     <% @spaces.each do |space| %>
-      <div class="box">
-        <p><%= space.name %></p>
-        <p><%= space.description %></p>
-        <p><%= space.street_number %> <%= space.street_name %></p>
-        <p><%= space.suburb %> <%= space.postal_code %></p>
-        <p><%= space.state %> <%= space.country %></p>
-        <p><%= space.user.email %></p>
-        <p><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-      </div>
-    <% end %>
 
+      <div class="column is-one-third">
+      <div class="card">
+
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <a href="<%= space_path(space) %>"><%= image_tag space.images[0].url %></a>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= space.name %></p>
+              <p class="subtitle is-6"><%= space.user.profile.name %></p>
+            </div>
+          </div>
+          <div class="content">
+            <p><%= space.description %></p>
+            <p><%= space.suburb %>, <%= space.state %>, <%= space.country %></p>
+            <p><%= link_to 'Book now', new_booking_path(space_id: space.id), class: 'button' %></p>
+            <small><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% end %>
+</div>
 
 
 <br>

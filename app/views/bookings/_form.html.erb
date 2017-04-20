@@ -27,13 +27,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :space_id %>
-    <%= f.text_field :space_id %>
+    <% if params[:space_id].present? %>
+      <%= f.hidden_field :space_id, value: params[:space_id]%>
+    <% end %>
   </div>
 
   <div class="actions">
