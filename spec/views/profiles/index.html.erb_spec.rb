@@ -13,6 +13,5 @@ RSpec.describe "profiles/index", type: :view do
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "Location".to_s, :count => 2
     assert_select "tr>td", :text => "Bio".to_s, :count => 2
-    assert_select "tr>td", :text => "Avatar".to_s, :count => 2
   end
 end
