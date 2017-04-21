@@ -15,7 +15,6 @@ RSpec.describe "bookings/edit", type: :view do
     assert_select "form[action=?][method=?]", booking_path(@booking), "post" do
 
       assert_select "input#booking_approved[name=?]", "booking[approved]"
-      assert_select "input#booking_space_id[name=?]", "booking[space_id]"
     end
   end
 end
