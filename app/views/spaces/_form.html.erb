@@ -65,6 +65,11 @@
     <%= f.text_area :description, class: "input" %>
   </div>
 
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price, class: "input" %>
+  </div>
+
   <div id="locationField" class="field">
     <input id="autocomplete" placeholder="Enter your address"
            onFocus="initAutocomplete" type="text" class="input"></input>
