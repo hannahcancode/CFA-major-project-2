@@ -21,7 +21,6 @@
         <td><%= booking.end_date %></td>
         <td><%= booking.space.name %></td>
         <td><%= number_to_currency(booking.space.price) %></td>
-        <!-- <td><%= render 'partials/stripe', booking: booking %></td> -->
       </tr>
     <% end %>
   </tbody>
@@ -58,6 +57,7 @@
       <th>End</th>
       <th>Room</th>
       <th>Price</th>
+      <th>List Product</th>
       <th></th>
     </tr>
   </thead>
@@ -69,6 +69,7 @@
         <td><%= booking.end_date %></td>
         <td><%= booking.space %></td>
         <td><%= number_to_currency(booking.space.price) %></td>
+        <td><%= link_to 'List a Product', new_product_path(space_id: booking.space.id), class: 'button' %>
       </tr>
     <% end %>
   </tbody>
