@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :conversations do
+    resources :messages
+  end
   resources :products
   resources :spaces
   resources :bookings do
     member do
-        end
+      resources :transactions
+    end
   end
   resources :profiles
   devise_for :users
