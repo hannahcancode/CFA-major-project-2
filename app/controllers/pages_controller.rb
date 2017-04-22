@@ -16,4 +16,8 @@ class PagesController < ApplicationController
     @paid_bookings = @bookings.paid
 
   end
+
+  def maps
+    @spaces = Space.all
+  end
 end
