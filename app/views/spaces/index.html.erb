@@ -36,7 +36,15 @@ function initMap() {
 </script>
 
 
+<%= search_form_for @q do |f| %>
 
+
+  Your search returned <%= @spaces.count %> values
+  <%= f.label :name_or_description_or_suburb_cont %>
+  <%= f.search_field :name_or_description_or_suburb_cont %>
+
+  <%= f.submit %>
+<% end %>
 
 <div class="columns is-multiline">
   <div class="column is-two-thirds">
