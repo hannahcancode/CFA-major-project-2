@@ -31,6 +31,8 @@ gem 'bulma-rails', '~> 0.4.0'
 gem 'carrierwave', '~> 1.0'
 gem 'geocoder'
 gem 'ransack'
+gem 'rolify'
+gem 'pundit'
 
 
 
