@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_one :profile, :dependent => :destroy
   has_many :spaces, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
+  has_many :products, :dependent => :destroy
 
   def create_profile
     Profile.create(user_id: id)

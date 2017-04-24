@@ -17,6 +17,11 @@ class PagesController < ApplicationController
 
   end
 
+  def admin_dashboard
+    authorize :dashboard, :show?
+    @users = User.all
+  end
+
   def maps
     @spaces = Space.all
   end

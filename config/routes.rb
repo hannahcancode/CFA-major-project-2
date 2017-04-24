@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   devise_for :users
   get 'hostdashboard', to: 'pages#host_dashboard'
   get 'guestdashboard', to: 'pages#guest_dashboard'
+  get 'admindashboard', to: 'pages#admin_dashboard'
+
+  scope "/admindashboard" do
+    resources :users
+  end
+
   get 'maps', to: 'pages#maps'
 
   root 'pages#index'
