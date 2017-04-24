@@ -30,9 +30,10 @@
   <!-- Add the modifier "is-active" to display it on mobile -->
   <div class="nav-right nav-menu">
     <% if user_signed_in? && policy(:dashboard).show? %>
-      <%= link_to "Admin Dashboard", admindashboard_path, class: 'nav-item'%>
+      <%= link_to "Admin Dashboard", admindashboard_path, class: 'nav-item' %>
     <% end %>
     <% if user_signed_in? %>
+      <%= link_to "Your profile", profile_path(current_user.profile.id), class: 'nav-item' %>
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: 'nav-item' %>
     <% else %>
       <%= link_to "Sign in", new_user_session_path, class: 'nav-item'%>
