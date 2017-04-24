@@ -108,6 +108,7 @@
   <div class="field">
     <%= f.label :images %>
     <%= f.file_field :images, multiple: true %>
+    <%= f.hidden_field(:images_cache) %>
   </div>
 
   <div class="field">

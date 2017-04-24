@@ -1,5 +1,8 @@
 class ImagesUploader < CarrierWave::Uploader::Base
 
+  include Cloudinary::CarrierWave
+
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -21,7 +24,10 @@ class ImagesUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-
+  version :standard do
+    process :eager => true
+    process :resize_to_fill => [100, 150, :north]
+  end
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
