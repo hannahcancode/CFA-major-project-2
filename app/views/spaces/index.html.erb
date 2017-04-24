@@ -1,5 +1,5 @@
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["MAPS_API"]%>&callback=initMap">
 </script>
 
 <p id="notice"><%= notice %></p>
@@ -17,10 +17,12 @@ function initMap() {
 
   var features = [
             <% @spaces.each do |space| %>
-            {
-              position: new google.maps.LatLng(<%= space.latitude %>, <%= space.longitude %>),
-              type: 'info'
-            },
+            <% if !space.latitude.blank? %>
+              {
+                position: new google.maps.LatLng(<%= space.latitude %>, <%= space.longitude %>),
+                type: 'info'
+              },
+            <% end %>
             <% end %>
           ];
 
