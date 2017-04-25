@@ -1,29 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @profile.name %>
-</p>
+<div class="column is-one-third is-offset-4">
+<div class="card has-text-left">
 
-<p>
-  <strong>Location:</strong>
-  <%= @profile.location %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @profile.bio %>
-</p>
-
-<p>
-  <strong>Avatar:</strong>
-  <%= image_tag @profile.avatar.url %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+  <div class="card-image">
+    <figure class="image is-2x2">
+      <% if @profile.avatar %>
+        <%= image_tag @profile.avatar.url %>
+      <% else %>
+        <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+      <% end %>
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4"><%= @profile.name %></p>
+        <p class="subtitle is-6"><% if @profile.id != current_user.id %>
+          <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: space.user.id), method: 'post' %>
+        <% end %></p>
+      </div>
+    </div>
+    <div class="content">
+      <p><%= @profile.bio %></p>
+      <p><%= @profile.location %></p>
+      <% if user_signed_in? %>
+        <% if policy(@profile).update? %>
+          <small><%= link_to 'Edit', edit_profile_path(@profile) %></small>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

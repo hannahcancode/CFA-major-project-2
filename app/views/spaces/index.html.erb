@@ -103,7 +103,9 @@ function initMap() {
         <div class="content">
           <p><%= space.description %></p>
           <p><%= space.suburb %>, <%= space.state %>, <%= space.country %></p>
-          <p><%= link_to 'Book now', new_booking_path(space_id: space.id), class: 'button' %></p>
+          <% if space.user.id != current_user.id %>
+            <p><%= link_to 'Book now', new_booking_path(space_id: space.id), class: 'button' %></p>
+          <% end %>
           <% if user_signed_in? %>
             <% if policy(space).update? %>
               <small><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></small>

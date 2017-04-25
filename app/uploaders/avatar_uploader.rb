@@ -15,6 +15,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def default_url
+    "sprouted_s.png"
+  end
   # process :convert => 'png'
   # process :tags => ['avatar_picture']
 

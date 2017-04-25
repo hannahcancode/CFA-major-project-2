@@ -30,7 +30,7 @@
     <% end %>
   <% end %>
 
-  <% if booking %>
+  <% if booking != nil %>
     <% if booking.user == current_user %>
       <div class="field">
         <%= f.label :start_date %>
@@ -42,6 +42,8 @@
         <%= f.date_select :end_date %>
       </div>
     <% end %>
+  <% end %>
+  <% if booking.user.present? %>
     <% if booking.space.user == current_user %>
       <p>Booking for <%= "#{booking.start_date} til #{booking.end_date}" %></p>
       <div class="field">
