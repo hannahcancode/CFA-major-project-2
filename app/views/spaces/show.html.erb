@@ -1,56 +1,77 @@
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["MAPS_API"]%>&callback=initMap">
+</script>
+
+<script>
+function initMap() {
+  <% if !@space.latitude.blank? %>
+    var myLatLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>};
+    var features = [{position: new google.maps.LatLng(myLatLng)}];
+  <% end %>
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: myLatLng
+  });
+
+
+
+          // Create markers.
+       features.forEach(function(feature) {
+         var marker = new google.maps.Marker({
+           position: feature.position,
+           map: map
+         });
+       });
+     }
+
+</script>
+
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Book now', new_booking_path(space_id: @space.id), class: 'button' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @space.name %>
-</p>
+<!-- TODO: Make carousel -->
+<!-- TODO: Add Maps -->
+<div class="columns is-multiline">
+  <div class="column is-full">
+    <div class="card">
+      <figure class="image is-2by1">
+        <%= image_tag @space.images[0].url %>
+      </figure>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="card">
+      <div id="map" style="height:100%; min-height:300px">
+      </div>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="card">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4"><%= @space.name %></p>
+            <p class="subtitle is-6"><%= @space.user.profile.name %></p>
+          </div>
+        </div>
+        <div class="content">
+          <p><%= @space.description %></p>
+          <p><%= @space.suburb %>, <%= @space.state %>, <%= @space.country %></p>
+          <p><%= link_to 'Book now', new_booking_path(space_id: @space.id), class: 'button' %></p>
+          <small><%= link_to 'Edit', edit_space_path(@space) %> <%= link_to 'Destroy', @space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+        </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @space.description %>
-</p>
+    </div>
+  </div>
 
-<p>
-  <strong>Street number:</strong>
-  <%= @space.street_number %>
-</p>
 
-<p>
-  <strong>Street name:</strong>
-  <%= @space.street_name %>
-</p>
 
-<p>
-  <strong>Suburb:</strong>
-  <%= @space.suburb %>
-</p>
 
-<p>
-  <strong>State:</strong>
-  <%= @space.state %>
-</p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @space.country %>
-</p>
 
-<p>
-  <strong>Postal code:</strong>
-  <%= @space.postal_code %>
-</p>
-
-<p>
-  <strong>Images:</strong>
-  <%= image_tag @space.images[0].url %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @space.user.email %>
-</p>
-
-<%= link_to 'Edit', edit_space_path(@space) %> |
 <%= link_to 'Back', spaces_path %>
