@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421042321) do
+ActiveRecord::Schema.define(version: 20170425065923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20170421042321) do
     t.boolean  "approved"
     t.integer  "user_id"
     t.integer  "space_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "paid",       default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "paid",        default: false
+    t.decimal  "total_price"
     t.index ["space_id"], name: "index_bookings_on_space_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
@@ -31,6 +32,14 @@ ActiveRecord::Schema.define(version: 20170421042321) do
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
+  end
+
+  create_table "enquiries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -66,6 +75,16 @@ ActiveRecord::Schema.define(version: 20170421042321) do
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+    t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
   create_table "spaces", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -80,7 +99,19 @@ ActiveRecord::Schema.define(version: 20170421042321) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.decimal  "price"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["user_id"], name: "index_spaces_on_user_id", using: :btree
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.decimal  "amount"
+    t.integer  "user_id"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_transactions_on_booking_id", using: :btree
+    t.index ["user_id"], name: "index_transactions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,6 +131,12 @@ ActiveRecord::Schema.define(version: 20170421042321) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+  end
+
   add_foreign_key "bookings", "spaces"
   add_foreign_key "bookings", "users"
   add_foreign_key "messages", "users"
@@ -107,4 +144,6 @@ ActiveRecord::Schema.define(version: 20170421042321) do
   add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "spaces", "users"
+  add_foreign_key "transactions", "bookings"
+  add_foreign_key "transactions", "users"
 end

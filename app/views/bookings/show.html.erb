@@ -11,18 +11,18 @@
 </p>
 
 <p>
-  <strong>Approved:</strong>
-  <%= @booking.approved %>
+  <strong>Price</strong>
+  <%= @booking.total_price %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @booking.user %>
+  <strong>Approved:</strong>
+  <%= yes_no(@booking.approved) %>
 </p>
 
 <p>
   <strong>Space:</strong>
-  <%= @booking.space %>
+  <%= @booking.space.name %>
 </p>
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |

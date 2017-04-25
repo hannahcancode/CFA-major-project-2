@@ -16,3 +16,10 @@
 
 $primary: orange;
 @import 'bulma';
+.card {
+  height: 100%;
+}
+.nav-item img {
+  height: 2.5rem;
+  max-height: 2.5rem;
+}
