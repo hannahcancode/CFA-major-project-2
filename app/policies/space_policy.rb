@@ -7,6 +7,6 @@ class SpacePolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin?
+    user.admin? || user == space.user
   end
 end
