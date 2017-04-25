@@ -10,21 +10,46 @@
       </ul>
     </div>
   <% end %>
+  <% if booking == nil %>
+    <% if Space.find(params[:space_id]).user != current_user %>
+      <div class="field">
+        <%= f.label :start_date %>
+        <%= f.date_select :start_date %>
+      </div>
 
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
-  </div>
+      <div class="field">
+        <%= f.label :end_date %>
+        <%= f.date_select :end_date %>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
-  </div>
+  <% if booking != nil %>
+    <% if booking.user == current_user %>
+      <div class="field">
+        <%= f.label :start_date %>
+        <%= f.date_select :start_date %>
+      </div>
 
-  <div class="field">
-    <%= f.label :approved %>
-    <%= f.check_box :approved %>
-  </div>
+      <div class="field">
+        <%= f.label :end_date %>
+        <%= f.date_select :end_date %>
+      </div>
+    <% end %>
+    <% if booking.space.user == current_user %>
+      <p>Booking for <%= "#{booking.start_date} til #{booking.end_date}" %></p>
+      <div class="field">
+        <%= f.label :approved %>
+        <%= f.check_box :approved %>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
 
   <div class="field">
     <% if params[:space_id].present? %>
@@ -32,7 +57,4 @@
     <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
