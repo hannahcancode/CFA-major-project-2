@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   resources :spaces
   resources :bookings do
     member do
-        end
+      resources :charges
+    end
   end
   resources :profiles
   devise_for :users
+
+
   get 'hostdashboard', to: 'pages#host_dashboard'
   get 'guestdashboard', to: 'pages#guest_dashboard'
   get 'admindashboard', to: 'pages#admin_dashboard'
