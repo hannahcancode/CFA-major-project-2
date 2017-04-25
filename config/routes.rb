@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   resources :profiles
   devise_for :users
 
-
-  get 'hostdashboard', to: 'pages#host_dashboard'
-  get 'guestdashboard', to: 'pages#guest_dashboard'
+  get 'dashboard', to: 'pages#member_dashboard'
   get 'admindashboard', to: 'pages#admin_dashboard'
 
   scope "/admindashboard" do

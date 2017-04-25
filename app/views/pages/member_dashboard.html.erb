@@ -1,0 +1,161 @@
+<div class="content">
+
+<h1>Member Dashboard</h1>
+
+<p><h3>Bookings for My Spaces</h3></p>
+<% if @spaces.count > 0 %>
+  <table class="hover">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Room</th>
+        <th>Price</th>
+        <th>Created</th>
+        <th>Approved</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @spaces.each do |space| %>
+        <% space.bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.start_date %></td>
+          <td><%= booking.end_date %></td>
+          <td><%= booking.space.name %></td>
+          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= booking.created_at %></td>
+          <td><%= booking.approved %></td>
+          <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no bookings on your spaces.</p>
+<% end %>
+
+<p><h3>My Spaces</h3></p>
+<% if @spaces.count > 0 %>
+  <table class="hover">
+    <thead>
+      <tr>
+        <th>Space</th>
+        <th>Price</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @spaces.each do |space| %>
+        <tr>
+          <td><%= space.name %></td>
+          <td><%= number_to_currency(space.price) %></td>
+          <td><%= link_to 'Edit', edit_space_path(space) %></td>
+          <td><%= link_to 'Delete space', space, method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no spaces yet. <%= link_to 'Create one?', new_space_path %></p>
+<% end %>
+
+
+
+<h3>My Bookings</h3>
+
+<p><h4>Ready for Payment</h4></p>
+
+<% if @approved_bookings.count > 0 %>
+  <table class="hover">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Room</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @approved_bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.start_date %></td>
+          <td><%= booking.end_date %></td>
+          <td><%= booking.space.name %></td>
+          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= render 'partials/stripe', booking: booking %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You currently have no approved bookings.</p>
+<% end %>
+
+<p><h4>Pending Approval</h4></p>
+
+<% if @pending_bookings.count > 0 %>
+  <table class="hover">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Room</th>
+        <th>Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pending_bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.start_date %></td>
+          <td><%= booking.end_date %></td>
+          <td><%= booking.space.name %></td>
+          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= link_to 'Delete booking', booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You currently have no pending bookings. <%= link_to 'Make a booking!', spaces_path %></p>
+<% end %>
+
+<p><h4>Paid bookings</h4></p>
+
+<% if @paid_bookings.count > 0 %>
+  <table class="hover">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Room</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @paid_bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.start_date %></td>
+          <td><%= booking.end_date %></td>
+          <td><%= booking.space.name %></td>
+          <td><%= number_to_currency(booking.space.price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no paid bookings.</p>
+<% end %>
+
+</div>

@@ -1,5 +1,6 @@
 class DashboardPolicy < Struct.new(:user, :dashboard)
-  def show?
+  def show_admin?
     user.admin?
   end
+
 end
