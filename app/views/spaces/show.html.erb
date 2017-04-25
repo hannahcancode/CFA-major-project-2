@@ -56,22 +56,20 @@ function initMap() {
           </div>
           <div class="media-content">
             <p class="title is-4"><%= @space.name %></p>
-            <p class="subtitle is-6"><%= @space.user.profile.name %></p>
+            <p class="subtitle is-6"><%= @space.user.profile.name %>
+            <% if @space.user.id != current_user.id %>
+              <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @space.user.id), method: 'post' %>
+            <% end %>
           </div>
         </div>
         <div class="content">
           <p><%= @space.description %></p>
           <p><%= @space.suburb %>, <%= @space.state %>, <%= @space.country %></p>
           <p><%= link_to 'Book now', new_booking_path(space_id: @space.id), class: 'button' %></p>
-          <small><%= link_to 'Edit', edit_space_path(@space) %> <%= link_to 'Destroy', @space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          <% if policy(@space).update? %>
+            <small><%= link_to 'Edit', edit_space_path(@space) %> <%= link_to 'Destroy', @space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-<%= link_to 'Back', spaces_path %>

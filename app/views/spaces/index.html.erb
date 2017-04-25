@@ -40,12 +40,15 @@ function initMap() {
 
 <%= search_form_for @q do |f| %>
   <div class="field">
-    <div class="field has-addons">
-      <div class="control">
-        <%= f.search_field :name_or_description_or_suburb_cont, class: 'input', placeholder: "Description/Suburb" %>
-      </div>
-      <div class="control">
-        <%= f.submit class: 'button' %>
+    <div class="field is-grouped">
+      <button class="button"><%= link_to 'New Space', new_space_path %></button>
+      <div class="field has-addons">
+        <div class="control">
+          <%= f.search_field :name_or_description_or_suburb_cont, class: 'input', placeholder: "Description/Suburb" %>
+        </div>
+        <div class="control">
+          <%= f.submit class: 'button' %>
+        </div>
       </div>
     </div>
     <div class="help">
@@ -53,6 +56,7 @@ function initMap() {
     </div>
   </div>
 <% end %>
+
 
 <div class="columns is-multiline">
   <div class="column is-two-thirds">
@@ -96,7 +100,9 @@ function initMap() {
           <p><%= space.description %></p>
           <p><%= space.suburb %>, <%= space.state %>, <%= space.country %></p>
           <p><%= link_to 'Book now', new_booking_path(space_id: space.id), class: 'button' %></p>
-          <small><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          <% if policy(space).update? %>
+            <small><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          <% end %>
         </div>
       </div>
     </div>
@@ -107,5 +113,3 @@ function initMap() {
 
 
 <br>
-
-<button class="button"><%= link_to 'New Space', new_space_path %></button>
