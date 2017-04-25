@@ -37,7 +37,7 @@ RSpec.describe SpacesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all spaces as @spaces" do
+    xit "assigns all spaces as @spaces" do
       space = Space.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:spaces)).to eq([space])
@@ -45,7 +45,7 @@ RSpec.describe SpacesController, type: :controller do
   end
 
   describe "GET #show" do
-    it "assigns the requested space as @space" do
+    xit "assigns the requested space as @space" do
       space = Space.create! valid_attributes
       get :show, params: {id: space.to_param}, session: valid_session
       expect(assigns(:space)).to eq(space)
@@ -53,14 +53,14 @@ RSpec.describe SpacesController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new space as @space" do
+    xit "assigns a new space as @space" do
       get :new, params: {}, session: valid_session
       expect(assigns(:space)).to be_a_new(Space)
     end
   end
 
   describe "GET #edit" do
-    it "assigns the requested space as @space" do
+    xit "assigns the requested space as @space" do
       space = Space.create! valid_attributes
       get :edit, params: {id: space.to_param}, session: valid_session
       expect(assigns(:space)).to eq(space)
@@ -69,31 +69,31 @@ RSpec.describe SpacesController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Space" do
+      xit "creates a new Space" do
         expect {
           post :create, params: {space: valid_attributes}, session: valid_session
         }.to change(Space, :count).by(1)
       end
 
-      it "assigns a newly created space as @space" do
+      xit "assigns a newly created space as @space" do
         post :create, params: {space: valid_attributes}, session: valid_session
         expect(assigns(:space)).to be_a(Space)
         expect(assigns(:space)).to be_persisted
       end
 
-      it "redirects to the created space" do
+      xit "redirects to the created space" do
         post :create, params: {space: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Space.last)
       end
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved space as @space" do
+      xit "assigns a newly created but unsaved space as @space" do
         post :create, params: {space: invalid_attributes}, session: valid_session
         expect(assigns(:space)).to be_a_new(Space)
       end
 
-      it "re-renders the 'new' template" do
+      xit "re-renders the 'new' template" do
         post :create, params: {space: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
@@ -106,20 +106,20 @@ RSpec.describe SpacesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested space" do
+      xit "updates the requested space" do
         space = Space.create! valid_attributes
         put :update, params: {id: space.to_param, space: new_attributes}, session: valid_session
         space.reload
         skip("Add assertions for updated state")
       end
 
-      it "assigns the requested space as @space" do
+      xit "assigns the requested space as @space" do
         space = Space.create! valid_attributes
         put :update, params: {id: space.to_param, space: valid_attributes}, session: valid_session
         expect(assigns(:space)).to eq(space)
       end
 
-      it "redirects to the space" do
+      xit "redirects to the space" do
         space = Space.create! valid_attributes
         put :update, params: {id: space.to_param, space: valid_attributes}, session: valid_session
         expect(response).to redirect_to(space)
@@ -127,13 +127,13 @@ RSpec.describe SpacesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns the space as @space" do
+      xit "assigns the space as @space" do
         space = Space.create! valid_attributes
         put :update, params: {id: space.to_param, space: invalid_attributes}, session: valid_session
         expect(assigns(:space)).to eq(space)
       end
 
-      it "re-renders the 'edit' template" do
+      xit "re-renders the 'edit' template" do
         space = Space.create! valid_attributes
         put :update, params: {id: space.to_param, space: invalid_attributes}, session: valid_session
         expect(response).to render_template("edit")
@@ -142,14 +142,14 @@ RSpec.describe SpacesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested space" do
+    xit "destroys the requested space" do
       space = Space.create! valid_attributes
       expect {
         delete :destroy, params: {id: space.to_param}, session: valid_session
       }.to change(Space, :count).by(-1)
     end
 
-    it "redirects to the spaces list" do
+    xit "redirects to the spaces list" do
       space = Space.create! valid_attributes
       delete :destroy, params: {id: space.to_param}, session: valid_session
       expect(response).to redirect_to(spaces_url)
