@@ -53,4 +53,16 @@ Sprouted is a way of connecting this land with the people who have the time and 
 
 ### Wireframes
 
-[![Wireframes](README_assets)]
+![Wireframes](README_assets/wireframe.jpeg)
+
+### Entity Relationship Diagram
+![ERD](README_assets/erd.jpeg)
+
+### User Journey
+![userjourney](README_assets/userjourney.jpeg)
+
+### Trello
+![userjourney](README_assets/trello.png)
+
+### Code review
+![userjourney](README_assets/codereview.png)
