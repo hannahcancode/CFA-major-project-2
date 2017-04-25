@@ -35,6 +35,7 @@ gem 'geocoder'
 gem 'ransack'
 gem 'rolify'
 gem 'pundit'
+gem 'stripe'
 
 
 

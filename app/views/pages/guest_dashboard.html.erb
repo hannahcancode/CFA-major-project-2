@@ -21,7 +21,7 @@
         <td><%= booking.end_date %></td>
         <td><%= booking.space.name %></td>
         <td><%= number_to_currency(booking.space.price) %></td>
-        <!-- <td><%= render 'partials/stripe', booking: booking %></td> -->
+        <td><%= render 'partials/stripe', booking: booking %></td>
       </tr>
     <% end %>
   </tbody>

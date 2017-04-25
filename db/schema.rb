@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425000933) do
+ActiveRecord::Schema.define(version: 20170425042944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,16 @@ ActiveRecord::Schema.define(version: 20170425000933) do
     t.index ["user_id"], name: "index_spaces_on_user_id", using: :btree
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.decimal  "amount"
+    t.integer  "user_id"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_transactions_on_booking_id", using: :btree
+    t.index ["user_id"], name: "index_transactions_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -133,4 +143,6 @@ ActiveRecord::Schema.define(version: 20170425000933) do
   add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "spaces", "users"
+  add_foreign_key "transactions", "bookings"
+  add_foreign_key "transactions", "users"
 end
