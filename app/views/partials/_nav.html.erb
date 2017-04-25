@@ -35,6 +35,7 @@
 
 
     <%= link_to "Spaces", spaces_path, class: 'nav-item'%>
+    <%= link_to "Contact Us", new_enquiry_path, class: 'nav-item'%>
     <% if user_signed_in? && policy(:dashboard).show_admin? %>
       <%= link_to "Admin Dashboard", admindashboard_path, class: 'nav-item' %>
     <% end %>
