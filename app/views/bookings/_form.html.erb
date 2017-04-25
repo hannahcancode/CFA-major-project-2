@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <% if booking == nil %>
+  <% if booking.start_date == nil %>
     <% if Space.find(params[:space_id]).user != current_user %>
       <div class="field">
         <%= f.label :start_date %>
@@ -21,13 +21,16 @@
         <%= f.label :end_date %>
         <%= f.date_select :end_date %>
       </div>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% else %>
+      <p>You can't book your own space!</p>
     <% end %>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
   <% end %>
 
-  <% if booking != nil %>
+  <% if booking %>
     <% if booking.user == current_user %>
       <div class="field">
         <%= f.label :start_date %>

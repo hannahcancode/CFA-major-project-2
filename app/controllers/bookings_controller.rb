@@ -26,6 +26,8 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
+    @booking.total_price = (@booking.end_date - @booking.start_date + 1) * @booking.space.price
+    @booking.approved = false
 
     respond_to do |format|
       if @booking.save
@@ -41,6 +43,7 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
@@ -66,6 +69,8 @@ class BookingsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
+      @booking.update_attributes(total_price: ((@booking.end_date - @booking.start_date + 1) * @booking.space.price))
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

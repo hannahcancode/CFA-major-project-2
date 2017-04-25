@@ -13,9 +13,6 @@ function initMap() {
     zoom: 12,
     center: myLatLng
   });
-
-
-
           // Create markers.
        features.forEach(function(feature) {
          var marker = new google.maps.Marker({
@@ -24,22 +21,20 @@ function initMap() {
          });
        });
      }
-
 </script>
 
 <p id="notice"><%= notice %></p>
 
-
-<!-- TODO: Make carousel -->
-<!-- TODO: Add Maps -->
 <div class="columns is-multiline">
-  <div class="column is-full">
-    <div class="card">
-      <figure class="image is-2by1">
-        <%= image_tag @space.images[0].url %>
-      </figure>
+  <% if @space.images[0] %>
+    <div class="column is-full">
+      <div class="card">
+        <figure class="image is-2by1">
+          <%= image_tag @space.images[0].url %>
+        </figure>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="column is-half">
     <div class="card">
       <div id="map" style="height:100%; min-height:300px">
@@ -48,10 +43,15 @@ function initMap() {
   </div>
   <div class="column is-half">
     <div class="card">
+      <div class="card-content">
         <div class="media">
           <div class="media-left">
             <figure class="image is-48x48">
-              <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+              <% if @space.user.profile.avatar %>
+                <%= image_tag @space.user.profile.avatar.url %>
+              <% else %>
+                <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+              <% end %>
             </figure>
           </div>
           <div class="media-content">
@@ -65,7 +65,7 @@ function initMap() {
           <p><%= link_to 'Book now', new_booking_path(space_id: @space.id), class: 'button' %></p>
           <small><%= link_to 'Edit', edit_space_path(@space) %> <%= link_to 'Destroy', @space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
         </div>
-
+      </div>
     </div>
   </div>
 

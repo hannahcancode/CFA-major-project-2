@@ -23,7 +23,7 @@
           <td><%= booking.start_date %></td>
           <td><%= booking.end_date %></td>
           <td><%= booking.space.name %></td>
-          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= number_to_currency(booking.total_price) %></td>
           <td><%= booking.created_at %></td>
           <% if !booking.approved %>
             <td><%= link_to 'Approve', edit_booking_path(booking) %></td>
@@ -90,7 +90,7 @@
           <td><%= booking.start_date %></td>
           <td><%= booking.end_date %></td>
           <td><%= booking.space.name %></td>
-          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= number_to_currency(booking.total_price) %></td>
           <td><%= render 'partials/stripe', booking: booking %></td>
         </tr>
       <% end %>
@@ -121,7 +121,7 @@
           <td><%= booking.start_date %></td>
           <td><%= booking.end_date %></td>
           <td><%= booking.space.name %></td>
-          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= number_to_currency(booking.total_price) %></td>
           <td><%= link_to 'Edit booking', edit_booking_path(booking) %></td>
           <td><%= link_to 'Delete booking', booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
           <td></td>
@@ -153,7 +153,7 @@
           <td><%= booking.start_date %></td>
           <td><%= booking.end_date %></td>
           <td><%= booking.space.name %></td>
-          <td><%= number_to_currency(booking.space.price) %></td>
+          <td><%= number_to_currency(booking.total_price) %></td>
         </tr>
       <% end %>
     </tbody>

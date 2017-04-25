@@ -6,7 +6,7 @@ class ChargesController < ApplicationController
   def create
     @booking = Booking.find(params[:id])
     # Amount in cents
-    @amount = (@booking.space.price * 100).to_i
+    @amount = (@booking.total_price * 100).to_i
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
@@ -22,8 +22,8 @@ class ChargesController < ApplicationController
 
     @transaction = Transaction.create(amount: @amount, user_id: current_user.id, booking_id: @booking.id)
 
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path(r: @booking.space.id)
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_charge_path(r: @booking.space.id)
   end
 end
