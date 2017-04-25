@@ -2,6 +2,9 @@ class PagesController < ApplicationController
   def index
   end
 
+  def about
+  end
+
   def member_dashboard
     @bookings = current_user.bookings
     @approved_bookings = @bookings.approved

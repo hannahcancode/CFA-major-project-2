@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Sprouted</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,10 +10,15 @@
   </head>
 
   <body>
-    <%= render "partials/nav" %>
-    <div class="container">
-
-      <%= yield %>
-    </div>
+    <section class="hero is-fullheight">
+      <div class="hero-head">
+        <%= render "partials/nav" %>
+      </div>
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <%= yield %>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

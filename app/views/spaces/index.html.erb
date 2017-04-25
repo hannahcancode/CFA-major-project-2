@@ -3,8 +3,9 @@
 </script>
 
 <p id="notice"><%= notice %></p>
+
 <div class="content">
-<h1>Spaces</h1>
+  <h1>Spaces</h1>
 </div>
 <script>
 function initMap() {
@@ -51,7 +52,7 @@ function initMap() {
         </div>
       </div>
     </div>
-    <div class="help">
+    <div class="help has-text-left">
       Showing <%= @spaces.count %> spaces
     </div>
   </div>
@@ -69,7 +70,7 @@ function initMap() {
   <% @spaces.each do |space| %>
 
     <div class="column is-one-third">
-    <div class="card">
+    <div class="card has-text-left">
 
       <div class="card-image">
         <figure class="image is-4by3">
@@ -93,15 +94,20 @@ function initMap() {
           </div>
           <div class="media-content">
             <p class="title is-4"><%= space.name %></p>
-            <p class="subtitle is-6"><%= space.user.profile.name %></p>
+            <p class="subtitle is-6"><%= space.user.profile.name %>
+            <% if space.user.id != current_user.id %>
+              <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: space.user.id), method: 'post' %>
+            <% end %></p>
           </div>
         </div>
         <div class="content">
           <p><%= space.description %></p>
           <p><%= space.suburb %>, <%= space.state %>, <%= space.country %></p>
           <p><%= link_to 'Book now', new_booking_path(space_id: space.id), class: 'button' %></p>
-          <% if policy(space).update? %>
-            <small><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          <% if user_signed_in? %>
+            <% if policy(space).update? %>
+              <small><%= link_to 'Show', space %> <%= link_to 'Edit', edit_space_path(space) %> <%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -110,6 +116,5 @@ function initMap() {
 
   <% end %>
 </div>
-
 
 <br>

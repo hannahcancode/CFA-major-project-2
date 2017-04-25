@@ -3,6 +3,7 @@
     <a class="nav-item" href="/">
       <%= image_tag 'sprouted_s.png' %>
     </a>
+    <%= link_to 'About', about_path, class: 'nav-item' %>
   </div>
 
   <div class="nav-center">
@@ -29,6 +30,8 @@
   <!-- This "nav-menu" is hidden on mobile -->
   <!-- Add the modifier "is-active" to display it on mobile -->
   <div class="nav-right nav-menu">
+
+
     <%= link_to "Spaces", spaces_path, class: 'nav-item'%>
     <% if user_signed_in? && policy(:dashboard).show_admin? %>
       <%= link_to "Admin Dashboard", admindashboard_path, class: 'nav-item' %>

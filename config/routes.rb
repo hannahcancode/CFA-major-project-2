@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'pages#member_dashboard'
   get 'admindashboard', to: 'pages#admin_dashboard'
+  get 'about', to: 'pages#about'
 
   scope "/admindashboard" do
     resources :users
