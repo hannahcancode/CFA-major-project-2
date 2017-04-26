@@ -105,6 +105,7 @@ function initMap() {
         <div class="content">
           <p><%= space.description %></p>
           <p><%= space.suburb %>, <%= space.state %>, <%= space.country %></p>
+          <p><%= number_to_currency(space.price) %></p>
           <% if user_signed_in? %>
             <% if space.user.id != current_user.id %>
               <p><%= link_to 'Book now', new_booking_path(space_id: space.id), class: 'button' %></p>
