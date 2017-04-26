@@ -20,7 +20,8 @@
         <td><%= user.profile.name %></td>
         <td><%= user.profile.location %></td>
         <td><%= user.profile.bio %></td>
-        <td><%= image_tag user.profile.avatar.url %></td>
+
+        <td><figure class="image is-96x96"><%= image_tag user.profile.avatar.url %></figure></td>
         <td><%= user.profile.user.email %></td>
         <td><%= link_to 'Show', user.profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(user.profile) %></td>
