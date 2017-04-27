@@ -41,6 +41,14 @@
 
 - navigate to `localhost:3000` in your web browser to view the site
 
+### Testing
+
+- tests for this applicaiton are written with rspec. To run:
+
+  `$ bundle exec rspec`
+
+- they are also run automatically by Travis CI - check the build button at the top of this repository to see whether the master is currently passing tests.
+
 ## Project Management
 
 ### Problem Statement and Solution
